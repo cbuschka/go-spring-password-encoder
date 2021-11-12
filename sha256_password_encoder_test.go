@@ -24,3 +24,16 @@ func TestSHA56MatchesIsSpringCompatible(t *testing.T) {
 
 	assert.True(t, matches)
 }
+
+func TestSHA56DoesNotMatchWrongPassword(t *testing.T) {
+
+	encoder := NewDefaultSHA256PasswordEncoder()
+
+	matches, err := encoder.Matches("thewrongone", "b376042b477bd18bcc8fa69c1158641c3464c964ae7fed6e1a6a4ed86f55ab0c432ef96a7d40ca85")
+	if err != nil {
+		t.Fatal(err)
+		return
+	}
+
+	assert.False(t, matches)
+}
