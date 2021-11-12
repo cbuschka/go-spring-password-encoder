@@ -12,15 +12,18 @@ type SHA256PasswordEncoder struct {
 	iterations      int
 }
 
+// NewDefaultSHA256PasswordEncoder creates a SHA256 password encoder with default params
 func NewDefaultSHA256PasswordEncoder() PasswordEncoder {
 	return NewSHA256PasswordEncoder(8, 1024)
 }
 
+// NewSHA256PasswordEncoder creates a SHA256 password encoder
 func NewSHA256PasswordEncoder(saltLengthBytes int, iterations int) PasswordEncoder {
 	encoder := SHA256PasswordEncoder{saltLengthBytes: saltLengthBytes, iterations: iterations}
 	return PasswordEncoder(&encoder)
 }
 
+// Matches checks if password is the same as an encoded password hash has been created from
 func (encoder *SHA256PasswordEncoder) Matches(plainPassword string, encodedPasswordHash string) (bool, error) {
 	if len(plainPassword) == 0 || len(encodedPasswordHash) == 0 {
 		return false, nil
