@@ -18,3 +18,18 @@ jobs:
 
     - name: Test
       run: go test ./...
+      if: runner.os != 'Linux'
+
+    - name: Test with coverage
+      run: make test
+      if: runner.os == 'Linux'
+
+    - name: Upload coverage data to codecov.io
+      uses: codecov/codecov-action@v1
+      with:
+          file: ./coverage.txt
+      if: runner.os == 'Linux'
+
+    - name: Update goreportcard
+      uses: creekorful/goreportcard-action@v1.0
+      if: runner.os == 'Linux'
