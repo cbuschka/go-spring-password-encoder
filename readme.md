@@ -1,5 +1,5 @@
 # go-spring-password-encoder
-[![Build](https://github.com/cbuschka/go-spring-password-encoder/workflows/build/badge.svg)](https://github.com/cbuschka/go-spring-password-encoder) [![Latest Release](https://img.shields.io/github/release/cbuschka/go-spring-password-encoder.svg)](https://github.com/cbuschka/go-spring-password-encoder/releases) [![License](https://img.shields.io/github/license/cbuschka/go-spring-password-encoder.svg)](https://github.com/cbuschka/go-spring-password-encoder/blob/main/license.txt)
+[![Build](https://github.com/cbuschka/go-spring-password-encoder/workflows/build/badge.svg)](https://github.com/cbuschka/go-spring-password-encoder) [![Latest Release](https://img.shields.io/github/release/cbuschka/go-spring-password-encoder.svg)](https://github.com/cbuschka/go-spring-password-encoder/releases) [![Go Report Card](https://goreportcard.com/badge/github.com/cbuschka/go-spring-password-encoder)](https://goreportcard.com/report/github.com/cbuschka/go-spring-password-encoder) [![License](https://img.shields.io/github/license/cbuschka/go-spring-password-encoder.svg)](https://github.com/cbuschka/go-spring-password-encoder/blob/main/license.txt)
 
 ### Spring compatible password encoders written in golang
 
