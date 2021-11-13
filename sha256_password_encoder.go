@@ -1,6 +1,7 @@
 package go_spring_password_encoder
 
 import (
+	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
 	"reflect"
@@ -23,6 +24,17 @@ func NewSHA256PasswordEncoder(saltLengthBytes int, iterations int) PasswordEncod
 	return PasswordEncoder(&encoder)
 }
 
+func (encoder *SHA256PasswordEncoder) Encode(plainPassword string) (string, error) {
+
+	saltBytes := make([]byte, encoder.saltLengthBytes)
+	_, err := rand.Read(saltBytes)
+	if err != nil {
+		return "", err
+	}
+
+	return encoder.saltHashAndEncode(plainPassword, saltBytes)
+}
+
 // Matches checks if password is the same as an encoded password hash has been created from
 func (encoder *SHA256PasswordEncoder) Matches(plainPassword string, encodedPasswordHash string) (bool, error) {
 	if len(plainPassword) == 0 || len(encodedPasswordHash) == 0 {
@@ -35,11 +47,24 @@ func (encoder *SHA256PasswordEncoder) Matches(plainPassword string, encodedPassw
 	}
 
 	saltBytes := hashedPasswordBytes[0:encoder.saltLengthBytes]
+	encodedPasswordBytes := encoder.saltAndHash(plainPassword, saltBytes)
 
+	expectedHashBytes := hashedPasswordBytes[encoder.saltLengthBytes:]
+	hashBytes := encodedPasswordBytes[encoder.saltLengthBytes:]
+
+	return reflect.DeepEqual(hashBytes, expectedHashBytes), nil
+}
+
+func (encoder *SHA256PasswordEncoder) saltHashAndEncode(plainPassword string, salt []byte) (string, error) {
+	resultBytes := encoder.saltAndHash(plainPassword, salt)
+
+	return hex.EncodeToString(resultBytes), nil
+}
+
+func (encoder *SHA256PasswordEncoder) saltAndHash(plainPassword string, salt []byte) []byte {
 	sha256Hash := sha256.New()
-
 	hashBytes := []byte{}
-	hashBytes = append(hashBytes, saltBytes...)
+	hashBytes = append(hashBytes, salt...)
 	plainPasswordBytes := []byte(plainPassword)
 	hashBytes = append(hashBytes, plainPasswordBytes...)
 	for i := 0; i < encoder.iterations; i++ {
@@ -48,7 +73,8 @@ func (encoder *SHA256PasswordEncoder) Matches(plainPassword string, encodedPassw
 		hashBytes = sha256Hash.Sum([]byte{})
 	}
 
-	expectedHashBytes := hashedPasswordBytes[encoder.saltLengthBytes:]
-
-	return reflect.DeepEqual(hashBytes, expectedHashBytes), nil
+	resultBytes := []byte{}
+	resultBytes = append(resultBytes, salt...)
+	resultBytes = append(resultBytes, hashBytes...)
+	return resultBytes
 }

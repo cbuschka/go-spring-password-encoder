@@ -37,3 +37,29 @@ func TestSHA56DoesNotMatchWrongPassword(t *testing.T) {
 
 	assert.False(t, matches)
 }
+
+func TestSHA56Encode(t *testing.T) {
+
+	encoder := NewDefaultSHA256PasswordEncoder()
+
+	encodedPasswordHash, err := encoder.Encode("asdfasdf")
+	if err != nil {
+		t.Fatal(err)
+		return
+	}
+
+	matches, err := encoder.Matches("asdfasdf", encodedPasswordHash)
+	if err != nil {
+		t.Fatal(err)
+		return
+	}
+	assert.True(t, matches)
+
+	matches, err = encoder.Matches("thewrongone", encodedPasswordHash)
+	if err != nil {
+		t.Fatal(err)
+		return
+	}
+	assert.False(t, matches)
+
+}
