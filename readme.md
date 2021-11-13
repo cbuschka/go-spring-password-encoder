@@ -3,6 +3,62 @@
 
 ### Spring compatible password encoders written in golang
 
+## Usage
+
+Add entry to go.mod file:
+
+```
+[...]
+
+go 1.16
+
+require (
+    github.com/cbuschka/go-spring-password-encoder v0.1.0
+    [...]
+)
+```
+
+import the package fromn within your code:
+
+```
+import "github.com/cbuschka/go-spring-password-encoder"
+```
+
+### SHA256PasswordEncoder (called StandardPasswordEncoder by spring)
+
+Hint: This password encoder is considered legacy and too weak. 
+
+#### Hash and encode password
+```
+encoder := NewDefaultSHA256PasswordEncoder()
+
+encodedPasswordHash, err := encoder.Encode("asdfasdf")
+```
+
+#### Compare plain text password with hashed and encoded password
+```
+encoder := NewDefaultSHA256PasswordEncoder()
+
+encodedPasswordHash, err := encoder.Encode("asdfasdf")
+```
+
+
+### BCryptPasswordEncoder
+
+#### Hash and encode password
+```
+encoder := NewDefaultBCryptPasswordEncoder()
+
+encodedPasswordHash, err := encoder.Encode("asdfasdf")
+```
+
+#### Compare plain text password with hashed and encoded password
+```
+encoder := NewDefaultBCryptPasswordEncoder()
+
+encodedPasswordHash, err := encoder.Encode("asdfasdf")
+```
+
 ## License
 Copyright (c) 2021 by [Cornelius Buschka](https://github.com/cbuschka).
 
