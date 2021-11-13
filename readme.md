@@ -42,6 +42,7 @@ encoder := NewDefaultSHA256PasswordEncoder()
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
 
+See [sha256 password encoder test](./sha256_password_encoder_test.go)
 
 ### BCryptPasswordEncoder
 
@@ -58,6 +59,8 @@ encoder := NewDefaultBCryptPasswordEncoder()
 
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
+
+See [bcrypt password encoder test](./bcrypt_password_encoder_test.go)
 
 ## License
 Copyright (c) 2021 by [Cornelius Buschka](https://github.com/cbuschka).
