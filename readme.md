@@ -37,7 +37,7 @@ encoder := NewDefaultSHA256PasswordEncoder()
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
 
-#### Compare plain text password with hashed and encoded password
+#### Compare plain text password with hashed password
 
 ```
 encoder := NewDefaultSHA256PasswordEncoder()
@@ -57,7 +57,7 @@ encoder := NewDefaultBCryptPasswordEncoder()
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
 
-#### Compare plain text password with hashed and encoded password
+#### Compare plain text password with hashed password
 
 ```
 encoder := NewDefaultBCryptPasswordEncoder()
