@@ -38,7 +38,6 @@ func TestBCryptDoesNotMatchWrongPassword(t *testing.T) {
 	assert.False(t, matches)
 }
 
-
 func TestBCryptEncode(t *testing.T) {
 
 	encoder := NewDefaultBCryptPasswordEncoder()
