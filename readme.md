@@ -14,7 +14,7 @@ Add entry to go.mod file:
 go 1.16
 
 require (
-    github.com/cbuschka/go-spring-password-encoder v0.1.0
+    github.com/cbuschka/go-spring-password-encoder v1.0.0
     [...]
 )
 ```
@@ -32,7 +32,7 @@ Hint: This password encoder is considered legacy and too weak.
 #### Hash and encode password
 
 ```
-encoder := NewDefaultSHA256PasswordEncoder()
+encoder := spring_password_encoder.NewDefaultSHA256PasswordEncoder()
 
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
@@ -40,7 +40,7 @@ encodedPasswordHash, err := encoder.Encode("asdfasdf")
 #### Compare plain text password with hashed password
 
 ```
-encoder := NewDefaultSHA256PasswordEncoder()
+encoder := spring_password_encoder.NewDefaultSHA256PasswordEncoder()
 
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
@@ -52,7 +52,7 @@ See [sha256 password encoder test](./sha256_password_encoder_test.go)
 #### Hash and encode password
 
 ```
-encoder := NewDefaultBCryptPasswordEncoder()
+encoder := spring_password_encoder.NewDefaultBCryptPasswordEncoder()
 
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```
@@ -60,7 +60,7 @@ encodedPasswordHash, err := encoder.Encode("asdfasdf")
 #### Compare plain text password with hashed password
 
 ```
-encoder := NewDefaultBCryptPasswordEncoder()
+encoder := spring_password_encoder.NewDefaultBCryptPasswordEncoder()
 
 encodedPasswordHash, err := encoder.Encode("asdfasdf")
 ```

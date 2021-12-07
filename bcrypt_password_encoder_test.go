@@ -1,4 +1,4 @@
-package go_spring_password_encoder
+package spring_password_encoder
 
 import (
 	"github.com/stretchr/testify/assert"
