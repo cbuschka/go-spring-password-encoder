@@ -24,6 +24,7 @@ func NewSHA256PasswordEncoder(saltLengthBytes int, iterations int) PasswordEncod
 	return PasswordEncoder(&encoder)
 }
 
+// Encode encrypts and encodes a plain text password.
 func (encoder *SHA256PasswordEncoder) Encode(plainPassword string) (string, error) {
 
 	saltBytes := make([]byte, encoder.saltLengthBytes)
