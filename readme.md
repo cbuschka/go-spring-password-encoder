@@ -71,6 +71,6 @@ See [bcrypt password encoder test](./bcrypt_password_encoder_test.go)
 
 Copyright (c) 2021 by [Cornelius Buschka](https://github.com/cbuschka).
 
-[Apache License, Version 2.0](./license.txt)
+[MIT](./license.txt)
 
 
